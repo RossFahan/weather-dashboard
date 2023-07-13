@@ -1,4 +1,6 @@
 //global variables
+var geocodingURL = "http://api.openweathermap.org/geo/1.0/direct"
+
 // current date variable
 //request urls for apis
 
