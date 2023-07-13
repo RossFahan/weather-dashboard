@@ -75,7 +75,7 @@ function loadSearchHistory(){
     //creating button adding to page
 }
 
-//event listener for submit form and button input (submit button for form)
+//event listener for search form
 searchForm.addEventListener('submit', function (event) {
     event.preventDefault();
     var city = searchInput.value.trim();
