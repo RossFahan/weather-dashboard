@@ -1,8 +1,11 @@
 //global variables
-var geocodingURL = "http://api.openweathermap.org/geo/1.0/direct"
+//var repoNameEl = document.querySelector('#repo-name');
+//var issueContainerEl = document.querySelector('#issues-container');
+//var limitWarningEl = document.querySelector('#limit-warning');
+
+//var geocodingURL = "http://api.openweathermap.org/geo/1.0/direct"
 
 // current date variable
-//request urls for apis
 
 //request urls for apis
 
@@ -14,17 +17,31 @@ var geocodingURL = "http://api.openweathermap.org/geo/1.0/direct"
 //functions
 
 // search 
-function getCoordinates(city){
-    // add the city to the url as a query parameter
+function getCoordinates(city) {
+    // add the city to the URL as a query parameter
+    var geocodingURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=21fb3ec49ce4787c37c1ae85c5364e99";
+  
+    fetch(geocodingURL)
+      .then(function(response) {
+        if (response.ok) {
+          response.json().then(function(data) {
+            // convert coordinates
+            console.log(data);
+            // getWeather(lat, long);
+          });
+        } else {
+          alert('Error: ' + response.statusText);
+        }
+      });
+  }
 
+  
     // make a fetch request to first api
-    // make a fetch request to the first api
     // . then
     // convert respone to json
     //.then
     //extract coordinates and save them as variable
     // call getWeather
-}
 
 function getWeather(lat, long){   
 //add the coordinates to the url as a query parameter
@@ -50,17 +67,21 @@ function loadSearchHistory(){
 //event listener for submit form and button input (submit button for form)
 //event listener for previous search buttons
 
-//some different options
 
-var formEl = document.querySelector("#form")
 
-formEl.addEventListener("submit", function() {
-    //do something
-})
+getCoordinates("Denver");
 
-function formHandler(){
-//do some stuff what city was typed call get coordinates
+// //some different options
 
-}
+// var formEl = document.querySelector("#form")
 
-formEl.addEventListener("submit", formHandler)
+// formEl.addEventListener("submit", function() {
+//     //do something
+// })
+
+// function formHandler(){
+// //do some stuff what city was typed call get coordinates
+
+// }
+
+// formEl.addEventListener("submit", formHandler)
