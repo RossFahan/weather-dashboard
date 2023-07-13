@@ -1,22 +1,14 @@
-//global variables
-//var repoNameEl = document.querySelector('#repo-name');
-//var issueContainerEl = document.querySelector('#issues-container');
-//var limitWarningEl = document.querySelector('#limit-warning');
+// Search form and input
+var searchForm = document.getElementById('search-form');
+var searchInput = document.getElementById('search-input');
 
-//var geocodingURL = "http://api.openweathermap.org/geo/1.0/direct"
+// Elements for displaying weather data
+var currentWeatherContainer = document.getElementById('current-weather');
+var forecastContainer = document.getElementById('forecast');
 
-// current date variable
 
-//request urls for apis
 
-//html (query) selectors
-//variable for search
-//vairable for search input field
-//var searchButtonEl = document.querySelector('#id')
-
-//functions
-
-// search 
+// search function
 function getCoordinates(city) {
     // add the city to the URL as a query parameter
     var geocodingURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=21fb3ec49ce4787c37c1ae85c5364e99";
@@ -41,6 +33,7 @@ function getCoordinates(city) {
       ;
   }
 
+//get weather using lat and long
 function getWeather(lat, lon){   
 
 var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=21fb3ec49ce4787c37c1ae85c5364e99";
@@ -66,6 +59,14 @@ fetch(forecastURL)
 
 function displayWeather(weatherData){
 //make weather data appear (text content append etc)
+
+  // Clear previous weather data
+  currentWeatherContainer.innerHTML = '';
+  forecastContainer.innerHTML = '';
+
+  // Process and display current weather
+
+  // Process and display 5-day forecast
 }
 
 function loadSearchHistory(){
@@ -75,23 +76,14 @@ function loadSearchHistory(){
 }
 
 //event listener for submit form and button input (submit button for form)
+searchForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var city = searchInput.value.trim();
+    if (city) {
+      getCoordinates(city);
+      searchInput.value = '';
+    }
+  });
+
+
 //event listener for previous search buttons
-
-
-
-getCoordinates("Denver");
-
-// //some different options
-
-// var formEl = document.querySelector("#form")
-
-// formEl.addEventListener("submit", function() {
-//     //do something
-// })
-
-// function formHandler(){
-// //do some stuff what city was typed call get coordinates
-
-// }
-
-// formEl.addEventListener("submit", formHandler)

@@ -11,17 +11,21 @@
 
 <body>
     <div class="body-container">
+
+        <!-- Header Section -->
         <div class="header-container">
             <h1>Weather Dashboard</h1>
         </div>
 
         <div class="row">
+
             <div class="col-lg-4">
+                <!-- Search Container -->
                 <div class="search-container">
                     <h2>Search for a City</h2>
-                    <form>
+                    <form id="search-form">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" id="search-input" placeholder="Search">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
@@ -29,33 +33,38 @@
                     </form>
                 </div>
 
+                <!-- Search History Container -->
                 <div class="search-history-container">
                     <hr>
-                    <button type="submit" class="btn btn-primary">History</button>
+                    <button type="button" class="btn btn-primary" id="history-button">History</button>
                 </div>
             </div>
 
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-md-6">
+                        <!-- Current Weather Container -->
                         <div class="forecast-container">
                             <h2>Local Weather</h2>
-                            <!-- append local Weather content -->
+                            <div id="current-weather"></div>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-6">
+                        <!-- 5-Day Forecast Container -->
                         <div class="forecast-container">
                             <h2>5-Day Forecast</h2>
-                            <!-- append 5 day content -->
+                            <div id="forecast"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
+        </div>
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
