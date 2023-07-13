@@ -46,6 +46,7 @@ fetch(forecastURL)
         // log data
         console.log(data);
         //extract 5 day forecast and current day forcast
+        displayWeather(data);
       });
     } else {
       alert('Error: ' + response.statusText);
@@ -65,6 +66,12 @@ function displayWeather(weatherData){
   forecastContainer.innerHTML = '';
 
   // Process and display current weather
+    var currentWeather = weatherData.list[0];
+    var cityName = currentWeather.name;
+    var temperature = currentWeather.main.temp;
+    var weatherIcon = currentWeather.weather[0].icon;
+    var humidity = currentWeather.main.humidity;
+    var windSpeed = currentWeather.wind.speed;
 
   // Process and display 5-day forecast
 }
