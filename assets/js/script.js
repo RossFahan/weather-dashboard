@@ -42,14 +42,26 @@ function getCoordinates(city) {
   }
 
 function getWeather(lat, lon){   
-//add the coordinates to the url as a query parameter
 
-// make a fetch request to first api
-// make a fetch request to the first api
-// . then
-// convert respone to json
-//.then
-//extract 5 day forecast and current day forcast
+var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=21fb3ec49ce4787c37c1ae85c5364e99";
+  
+console.log(forecastURL);
+fetch(forecastURL)
+  .then(function(response) {
+    if (response.ok) {
+      response.json().then(function(data) {
+        // log data
+        console.log(data);
+        //extract 5 day forecast and current day forcast
+      });
+    } else {
+      alert('Error: ' + response.statusText);
+    }
+  })
+  .catch(function (error) {
+    alert('Unable to connect to OpenWeatherMap');
+  });
+  ;
 }
 
 function displayWeather(weatherData){
