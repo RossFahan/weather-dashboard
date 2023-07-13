@@ -28,6 +28,8 @@ function getCoordinates(city) {
             // convert coordinates
             console.log(data);
             // getWeather(lat, long);
+            getWeather(data[0].lat, data[0].lon);
+            //console.log(data[0].lat + " " + data[0].lon);
           });
         } else {
           alert('Error: ' + response.statusText);
@@ -39,15 +41,7 @@ function getCoordinates(city) {
       ;
   }
 
-
-    // make a fetch request to first api
-    // . then
-    // convert respone to json
-    //.then
-    //extract coordinates and save them as variable
-    // call getWeather
-
-function getWeather(lat, long){   
+function getWeather(lat, lon){   
 //add the coordinates to the url as a query parameter
 
 // make a fetch request to first api
