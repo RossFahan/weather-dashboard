@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="body-container">
         <div class="header-container">
             <h1>Weather Dashboard</h1>
         </div>
 
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <div class="search-container">
                     <h2>Search for a City</h2>
                     <form>
@@ -27,23 +28,34 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="search-history-container">
-                    <h2>Search History</h2>
+                    <hr>
                     <button type="submit" class="btn btn-primary">History</button>
                 </div>
             </div>
-            <div class="col-lg-10">
-                <div class="local-weather-container">
-                    <h2>Local Weather</h2>
-                    <!-- Add your local weather content here -->
+
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="forecast-container">
+                            <h2>Local Weather</h2>
+                            <!-- append local Weather content -->
+                        </div>
+                    </div>
                 </div>
-                <div class="forecast-container">
-                    <h2>5-Day Forecast</h2>
-                    <!-- Add your 5-day forecast content here -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="forecast-container">
+                            <h2>5-Day Forecast</h2>
+                            <!-- append 5 day content -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
