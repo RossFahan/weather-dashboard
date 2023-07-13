@@ -19,7 +19,7 @@
 // search 
 function getCoordinates(city) {
     // add the city to the URL as a query parameter
-    var geocodingURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=21fb3ec49ce4787c37c1ae85c5364e99";
+    var geocodingURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=21fb3ec49ce4787c37c1ae85c5364e99";
   
     fetch(geocodingURL)
       .then(function(response) {
@@ -32,10 +32,14 @@ function getCoordinates(city) {
         } else {
           alert('Error: ' + response.statusText);
         }
+      })
+      .catch(function (error) {
+        alert('Unable to connect to OpenWeatherMap');
       });
+      ;
   }
 
-  
+
     // make a fetch request to first api
     // . then
     // convert respone to json
