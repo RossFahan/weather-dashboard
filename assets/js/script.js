@@ -5,8 +5,10 @@ var searchInput = document.getElementById('search-input');
 // Elements for displaying weather data
 var currentWeatherContainer = document.getElementById('current-weather');
 var forecastContainer = document.getElementById('forecast');
+var historyButtonContainer = document.getElementById('history-button-container');
 
-
+// Array to store search history
+var searchHistory = [];
 
 // search function
 function getCoordinates(city) {
@@ -21,7 +23,6 @@ function getCoordinates(city) {
                     console.log(data);
                     // getWeather(lat, long);
                     getWeather(data[0].lat, data[0].lon);
-                    //console.log(data[0].lat + " " + data[0].lon);
                 });
             } else {
                 alert('Error: ' + response.statusText);
@@ -30,12 +31,10 @@ function getCoordinates(city) {
         .catch(function (error) {
             alert('Unable to connect to OpenWeatherMap');
         });
-    ;
 }
 
 //get weather using lat and long
 function getWeather(lat, lon) {
-
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=21fb3ec49ce4787c37c1ae85c5364e99&units=imperial";
 
     console.log(forecastURL);
@@ -45,7 +44,7 @@ function getWeather(lat, lon) {
                 response.json().then(function (data) {
                     // log data
                     console.log(data);
-                    //extract 5 day forecast and current day forcast
+                    //extract 5 day forecast and current day forecast
                     displayWeather(data);
                 });
             } else {
@@ -55,7 +54,6 @@ function getWeather(lat, lon) {
         .catch(function (error) {
             alert('Unable to connect to OpenWeatherMap');
         });
-    ;
 }
 
 function displayWeather(weatherData) {
@@ -74,44 +72,44 @@ function displayWeather(weatherData) {
 
     console.log(cityName);
 
-     // Create HTML elements
-     var heading = document.createElement('h3');
-     var weatherIconImg = document.createElement('img');
-     var temperatureSpan = document.createElement('span');
-     var windSpeedSpan = document.createElement('span');
-     var humiditySpan = document.createElement('span');
- 
-     // Set inner HTML or text content
-     weatherIconImg.src = 'https://openweathermap.org/img/w/' + weatherIcon + '.png';
-     weatherIconImg.alt = 'Weather Icon';
-     heading.textContent = cityName + " " + "(" + date + ")" + " ";
- 
-     // Create div elements to wrap spans
-     var temperatureDiv = document.createElement('div');
-     var windSpeedDiv = document.createElement('div');
-     var humidityDiv = document.createElement('div');
- 
-     temperatureSpan.textContent = 'Temperature: ' + temperature + '°';
-     windSpeedSpan.textContent = 'Wind Speed: ' + windSpeed + ' MPH';
-     humiditySpan.textContent = 'Humidity: ' + humidity + '%';
- 
-     // Append spans to respective div elements
-     temperatureDiv.appendChild(temperatureSpan);
-     windSpeedDiv.appendChild(windSpeedSpan);
-     humidityDiv.appendChild(humiditySpan);
- 
-     // Append elements to currentWeatherContainer
-     heading.appendChild(weatherIconImg);
-     currentWeatherContainer.appendChild(heading);
-     currentWeatherContainer.appendChild(temperatureDiv);
-     currentWeatherContainer.appendChild(windSpeedDiv);
-     currentWeatherContainer.appendChild(humidityDiv);
- 
-     // Process and display 5-day forecast
-     var forecastList = weatherData.list;
- 
-     var forecastRow = document.createElement('div');
-     forecastRow.classList.add('row');
+    // Create HTML elements
+    var heading = document.createElement('h3');
+    var weatherIconImg = document.createElement('img');
+    var temperatureSpan = document.createElement('span');
+    var windSpeedSpan = document.createElement('span');
+    var humiditySpan = document.createElement('span');
+
+    // Set inner HTML or text content
+    weatherIconImg.src = 'https://openweathermap.org/img/w/' + weatherIcon + '.png';
+    weatherIconImg.alt = 'Weather Icon';
+    heading.textContent = cityName + " " + "(" + date + ")" + " ";
+
+    // Create div elements to wrap spans
+    var temperatureDiv = document.createElement('div');
+    var windSpeedDiv = document.createElement('div');
+    var humidityDiv = document.createElement('div');
+
+    temperatureSpan.textContent = 'Temperature: ' + temperature + '°';
+    windSpeedSpan.textContent = 'Wind Speed: ' + windSpeed + ' MPH';
+    humiditySpan.textContent = 'Humidity: ' + humidity + '%';
+
+    // Append spans to respective div elements
+    temperatureDiv.appendChild(temperatureSpan);
+    windSpeedDiv.appendChild(windSpeedSpan);
+    humidityDiv.appendChild(humiditySpan);
+
+    // Append elements to currentWeatherContainer
+    heading.appendChild(weatherIconImg);
+    currentWeatherContainer.appendChild(heading);
+    currentWeatherContainer.appendChild(temperatureDiv);
+    currentWeatherContainer.appendChild(windSpeedDiv);
+    currentWeatherContainer.appendChild(humidityDiv);
+
+    // Process and display 5-day forecast
+    var forecastList = weatherData.list;
+
+    var forecastRow = document.createElement('div');
+    forecastRow.classList.add('row');
 
     // Looping for 5 days (API provides data every 3 hours)
     for (var i = 7; i < 47; i += 8) {
@@ -163,22 +161,23 @@ function displayWeather(weatherData) {
     forecastContainer.appendChild(forecastRow);
 }
 
-function loadSearchHistory() {
-    // find searched cities in localStorage
-    // display them
-    //creating button adding to page
+// Save the city in local storage
+function saveSearch(city) {
+    // Add the city to the search history array
+    searchHistory.unshift(city);
+
+    // Limit the search history to a maximum of 10 cities
+    if (searchHistory.length > 10) {
+        searchHistory.pop(); // Remove the oldest city from the array
+    }
+
+    // Save the updated search history array in local storage
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+    // Update the search history buttons
+    loadSearchHistory();
 }
 
-//event listener for search form
-searchForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    var city = searchInput.value.trim();
-    if (city) {
-        getCoordinates(city);
-        searchInput.value = '';
-    }
-});
-
-
-//event listener for previous search buttons
-
+// Load search history from local storage and display the buttons
+function loadSearchHistory() {
+}
