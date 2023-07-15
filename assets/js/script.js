@@ -36,7 +36,7 @@ function getCoordinates(city) {
 //get weather using lat and long
 function getWeather(lat, lon) {
 
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=21fb3ec49ce4787c37c1ae85c5364e99";
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=21fb3ec49ce4787c37c1ae85c5364e99&units=imperial";
 
     console.log(forecastURL);
     fetch(forecastURL)
@@ -59,46 +59,45 @@ function getWeather(lat, lon) {
 }
 
 function displayWeather(weatherData) {
-
     // Clear previous weather data
     currentWeatherContainer.innerHTML = '';
     forecastContainer.innerHTML = '';
-
+  
     // Variables to store current weather data
     var currentWeather = weatherData.list[0];
-    var cityName = currentWeather.name;
+    var cityName = weatherData.city.name;
     var weatherIcon = currentWeather.weather[0].icon;
     var temperature = currentWeather.main.temp;
     var windSpeed = currentWeather.wind.speed;
     var humidity = currentWeather.main.humidity;
     var date = new Date(currentWeather.dt * 1000).toLocaleDateString();
-
+  
     console.log(cityName);
-
+  
     // Create HTML elements
     var heading = document.createElement('h3');
     var weatherIconImg = document.createElement('img');
     var temperatureSpan = document.createElement('span');
     var windSpeedSpan = document.createElement('span');
     var humiditySpan = document.createElement('span');
-
+  
     // Set inner HTML or text content
-    heading.textContent = cityName;
     weatherIconImg.src = 'https://openweathermap.org/img/w/' + weatherIcon + '.png';
     weatherIconImg.alt = 'Weather Icon';
+    heading.textContent = cityName + " " + "(" + date + ")" + " ";
     temperatureSpan.textContent = 'Temperature: ' + temperature + '°';
     windSpeedSpan.textContent = 'Wind Speed: ' + windSpeed + ' MPH';
     humiditySpan.textContent = 'Humidity: ' + humidity + '%';
-
+  
     // Append elements to currentWeatherContainer
+    heading.appendChild(weatherIconImg);
     currentWeatherContainer.appendChild(heading);
-    currentWeatherContainer.appendChild(weatherIconImg);
     currentWeatherContainer.appendChild(temperatureSpan);
-    currentWeatherContainer.appendChild(humiditySpan);
     currentWeatherContainer.appendChild(windSpeedSpan);
-
+    currentWeatherContainer.appendChild(humiditySpan);
+  
     // Process and display 5-day forecast
-}
+  }
 
 function loadSearchHistory() {
     // find searched cities in localStorage
