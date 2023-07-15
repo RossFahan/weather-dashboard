@@ -19,7 +19,7 @@ This is a simple weather application that allows a user to get the current weath
 
 
 ## Landing Page
-![Site Langing Page](./assets/images/WeatherDash.pngWeatherDash.png)
+![Site Langing Page](./assets/images/WeatherDash.png)
 
 
 ## Learning Points 
