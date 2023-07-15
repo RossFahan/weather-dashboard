@@ -1,19 +1,22 @@
 .header-container {
     text-align: center;
     margin-bottom: 20px;
-    background-color: #f2f2f2; 
+    background-color: #4877f8; 
     padding: 20px;
+    color: white;
 }
 
 .search-container {
     margin-bottom: 20px;
-    background-color: #e6f2ff; 
     padding: 20px;
 }
 
 .search-history-container {
-    background-color: rgb(255, 227, 227); 
     padding: 20px;
+}
+.search-history-container .btn{
+    background-color: lightgrey;
+    color: black;
 }
 
 .forecast-container {
