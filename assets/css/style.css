@@ -19,8 +19,10 @@
     color: black;
 }
 
-.forecast-container {
-    background-color: #f9f9f9; 
+.forecast-container .card{
+    background-color: rgb(10, 22, 63);
+    color: white;
+    margin: 8px;
 }
 
 .weather-info span {
