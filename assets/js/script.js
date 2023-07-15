@@ -74,15 +74,17 @@ function displayWeather(weatherData) {
 
     // Create HTML elements
     var heading = document.createElement('h3');
+    var fiveDayHeading = document.createElement('h2')
     var weatherIconImg = document.createElement('img');
     var temperatureSpan = document.createElement('span');
     var windSpeedSpan = document.createElement('span');
     var humiditySpan = document.createElement('span');
 
-    // Set inner HTML or text content
+    // Set text/image content
     weatherIconImg.src = 'https://openweathermap.org/img/w/' + weatherIcon + '.png';
     weatherIconImg.alt = 'Weather Icon';
     heading.textContent = cityName + " " + "(" + date + ")" + " ";
+    fiveDayHeading.textContent = "5 Day Forcast:"
 
     // Create div elements to wrap spans
     var temperatureDiv = document.createElement('div');
@@ -104,6 +106,7 @@ function displayWeather(weatherData) {
     currentWeatherContainer.appendChild(temperatureDiv);
     currentWeatherContainer.appendChild(windSpeedDiv);
     currentWeatherContainer.appendChild(humidityDiv);
+    currentWeatherContainer.appendChild(fiveDayHeading);
 
     // Process and display 5-day forecast
     var forecastList = weatherData.list;
