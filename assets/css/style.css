@@ -19,3 +19,8 @@
 .forecast-container {
     background-color: #f9f9f9; 
 }
+
+.weather-info span {
+    display: block;
+    margin-bottom: 10px;
+  }
